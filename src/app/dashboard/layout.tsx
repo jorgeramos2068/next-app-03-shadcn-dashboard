@@ -4,6 +4,7 @@ const links = [
   { name: 'accordion', href: 'accordion' },
   { name: 'alert', href: 'alert' },
   { name: 'button', href: 'button' },
+  { name: 'alert-dialog', href: 'alert-dialog' },
 ];
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
