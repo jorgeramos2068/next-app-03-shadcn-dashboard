@@ -5,6 +5,7 @@ const links = [
   { name: 'alert', href: 'alert' },
   { name: 'button', href: 'button' },
   { name: 'alert-dialog', href: 'alert-dialog' },
+  { name: 'dialog', href: 'dialog' },
 ];
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
