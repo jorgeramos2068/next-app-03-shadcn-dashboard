@@ -1,3 +1,7 @@
+# Shadcd Dashboard
+
+Next.js application that shows patterns of components of Shadcn/ui.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
