@@ -18,6 +18,7 @@ const links = [
   { name: 'context menu', href: 'context-menu' },
   { name: 'menubar', href: 'menubar' },
   { name: 'input otp', href: 'input-otp' },
+  { name: 'progress', href: 'progress' },
 ].sort((a, b) => a.name.localeCompare(b.name));
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
