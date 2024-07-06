@@ -33,6 +33,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Payment } from '@/helpers';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -44,6 +45,7 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [statusFilter, setStatusFilter] = React.useState('all');
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
+  const [rowSelection, setRowSelection] = React.useState({});
 
   const table = useReactTable({
     data,
@@ -55,12 +57,19 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
     onColumnVisibilityChange: setColumnVisibility,
+    onRowSelectionChange: setRowSelection,
     state: {
       sorting,
       columnFilters,
       columnVisibility,
+      rowSelection,
     },
   });
+
+  const handleDelete = () => {
+    const names = table.getSelectedRowModel().rows.map(row => (row.original as Payment).clientName);
+    console.log(names);
+  };
 
   return (
     <>
@@ -93,6 +102,10 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
             </SelectGroup>
           </SelectContent>
         </Select>
+
+        <Button className="ml-2" variant="destructive" onClick={handleDelete}>
+          Delete
+        </Button>
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -153,7 +166,12 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
           </TableBody>
         </Table>
 
-        <div className="flex items-center justify-end space-x-2 py-4 mx-2">
+        <div className="flex-1 text-sm text-muted-foreground space-x-2 py-4 mx-2">
+          {table.getFilteredSelectedRowModel().rows.length} of {table.getFilteredRowModel().rows.length} row(s)
+          selected.
+        </div>
+
+        <div className="flex items-center justify-end space-x-2 py-4">
           <Button
             variant="outline"
             size="sm"
